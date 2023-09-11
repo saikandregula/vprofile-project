@@ -4,11 +4,11 @@ services:
     build: 
       context: ./Docker-files/db
     image: saisatya9/vprofiledb 
-    container_name:vprodb
+    container_name: vprodb
     ports:
       - "3306:3306"
     volumes:
-      -vprodbdata:/var/lib/mysql  
+      - vprodbdata:/var/lib/mysql  
     environment:
       - MYSQL_ROOT_PASSWORD=vprodbpass
 
@@ -29,20 +29,20 @@ services:
     build: 
       context: ./Docker-files/app
     image: saisatya9/vprofileapp 
-    container_name:vproapp
+    container_name: vproapp
     ports:
       - "8080:8080"
     volumes:
-      -vproappdata:/var/local/tomcat/webapps 
+      - vproappdata:/var/local/tomcat/webapps 
 
   vproweb:
     build: 
       context: ./Docker-files/web
     image: saisatya9/vprofileweb 
-    container_name:vproweb
+    container_name: vproweb
     ports:
       - "80:80"
 
 volumes:
-  vprodbdata:{}
-  vproappdata:{}
+  vprodbdata: {}
+  vproappdata: {}
