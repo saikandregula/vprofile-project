@@ -1,22 +1,22 @@
-version: '3.8'
+version: "3.8"
 services:
   vprodb:
-    build: 
+    build:
       context: ./Docker-files/db
-    image: saisatya9/vprofiledb 
+    image: saisatya9/vprofiledb
     container_name: vprodb
     ports:
       - "3306:3306"
     volumes:
-      - vprodbdata:/var/lib/mysql  
+      - vprodbdata:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=vprodbpass
+      - MYSQL_ROOT_PASSWORD: vprodbpass
 
   vprocache01:
     image: memcached
     ports:
       - "11211:11211"
-    
+
   vpromq01:
     image: rabbitmq
     ports:
@@ -24,21 +24,21 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
-  
+
   vproapp:
-    build: 
+    build:
       context: ./Docker-files/app
-    image: saisatya9/vprofileapp 
+    image: saisatya9/vprofileapp
     container_name: vproapp
     ports:
       - "8080:8080"
     volumes:
-      - vproappdata:/var/local/tomcat/webapps 
+      - vproappdata:/var/local/tomcat/webapps
 
   vproweb:
-    build: 
+    build:
       context: ./Docker-files/web
-    image: saisatya9/vprofileweb 
+    image: saisatya9/vprofileweb
     container_name: vproweb
     ports:
       - "80:80"
